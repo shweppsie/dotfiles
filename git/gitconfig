@@ -1,0 +1,10 @@
+[color]
+	log = true
+	diff = true
+	ui = true
+
+[user]
+	name = Nathan Overall
+	email = shweppsie@gmail.com
+[merge]
+	tool = vimdiff

@@ -1,0 +1,74 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
+
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
+#ignore duplicate history entries
+export HISTCONTROL=erasedups
+
+#path variable
+export PATH="$PATH:/sbin:/usr/local/bin:/opt:/usr/share/python-support/python-django/django/bin/"
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# size of history
+export HISTSIZE=10000;
+
+# check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
+    ;;
+*)
+    ;;
+esac
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    eval "`dircolors -b`"
+    alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+alias wodim='wodim -v'
+alias mem='ps -e -orss=,pid=,args= | sort -n | cut -c -50'
+#alias grep='grep -n'
+
+# need to use system to do my networky stuff
+alias virsh='virsh --connect qemu:///system'
+alias virt-install='virt-install --connect qemu:///system'
+alias virt-viewer='virt-viewer --connect qemu:///system'
+
+# coloured diff from http://www.ex-parrot.com/pdw/cdiff.html
+diffnew=`tput setf 6``tput bold`   # colour for added lines (bright yellow)
+diffold=`tput setf 4``tput bold`   # colour for removed lines (bright red)
+diffsame=`tput setf 0``tput bold`  # colour for unchanged lines (bright black, aka dark grey)
+reset=`tput op``tput sgr0`         # reset - original pair, unset all attributes
+alias diff="diff --changed-group-format='%<%>'  \
+	--new-group-format='%>' \
+	--old-group-format='%<' \
+	--new-line-format='${diffnew}+ %l
+$reset' \
+	--old-line-format='${diffold}- %l
+$reset' \
+	--unchanged-line-format='${diffsame}  %l${reset}
+' "

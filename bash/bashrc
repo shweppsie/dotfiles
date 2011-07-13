@@ -49,9 +49,10 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+#aliases to make life easier
 alias wodim='wodim -v'
 alias mem='ps -e -orss=,pid=,args= | sort -n | cut -c -50'
-#alias grep='grep -n'
+alias ll='ls -l'
 
 # need to use system to do my networky stuff
 alias virsh='virsh --connect qemu:///system'

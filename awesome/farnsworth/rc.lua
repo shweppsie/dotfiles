@@ -163,18 +163,14 @@ for s = 1, screen.count() do
             mypromptbox[s],
             layout = awful.widget.layout.horizontal.leftright
         },
-	{
-		layout = awful.widget.layout.horizontal.leftright
-	},
-	mylauncher,
-	shutdownbutton,
+	--shutdownbutton,
         mylayoutbox[s],
+        mysystray,
         mytextclock,
 	batterywidget,
         tb_volume,
-        s == 1 and mysystray or nil,
 	mytasklist[s],
-        layout = awful.widget.layout.horizontal.rightleft
+	layout = awful.widget.layout.horizontal.rightleft
     }
 end
 -- }}}

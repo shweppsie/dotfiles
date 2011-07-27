@@ -53,6 +53,7 @@ fi
 alias wodim='wodim -v'
 alias mem='ps -e -orss=,pid=,args= | sort -n | cut -c -50'
 alias ll='ls -l'
+alias l='ls -1'
 
 # need to use system to do my networky stuff
 alias virsh='virsh --connect qemu:///system'

@@ -18,7 +18,7 @@ set background=dark
 
 " wrap lines bigger than the terminal and wrapped section of lines begin with >>
 set nowrap linebreak nolist
-set showbreak=>>
+set showbreak=...
 
 set incsearch		" search as each character is typed
 set showmode		" show when mode changes

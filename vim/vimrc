@@ -39,6 +39,16 @@ filetype plugin indent on
 set title
 set titlestring=%t%(\ %M%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)\ -\ %{v:servername}
 
+" Press F6 to toggle linewrap indicator
+function! ShowBreak()
+	if &showbreak == ''
+		set showbreak=...
+	else
+		set showbreak=
+	endif
+endfunction
+nmap <F6> :call ShowBreak()<CR> :set showbreak?<CR>
+
 " Press F5 to toggle wrapping
 noremap <F5> :set nowrap! nowrap?<CR>
 

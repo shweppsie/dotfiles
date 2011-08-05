@@ -47,7 +47,7 @@ function! ShowBreak()
 		set showbreak=
 	endif
 endfunction
-nmap <F6> :call ShowBreak()<CR> :set showbreak?<CR>
+nmap <F6> :call ShowBreak()<CR> :set linebreak! showbreak?<CR>
 
 " Press F5 to toggle wrapping
 noremap <F5> :set nowrap! nowrap?<CR>

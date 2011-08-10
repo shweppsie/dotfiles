@@ -5,6 +5,6 @@
 
 [user]
 	name = Nathan Overall
-	email = shweppsie@gmail.com
+	email = git@shweppsie.com
 [merge]
 	tool = vimdiff

@@ -2,7 +2,6 @@
 
 low_vol=0
 max_vol=100
-increment=1 #this is 1%
 
 [[ $1 == down ]] && _status="down"
 [[ $1 == up ]] && _status="up"

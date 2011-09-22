@@ -7,7 +7,7 @@
 export HISTCONTROL=erasedups
 
 #path variable
-export PATH="$PATH:/sbin:/usr/local/bin:/opt:/usr/share/python-support/python-django/django/bin/"
+export PATH="$PATH:/sbin:/usr/sbin:/usr/local/bin:/usr/local/sbin"
 
 # append to the history file, don't overwrite it
 shopt -s histappend

@@ -52,8 +52,10 @@ fi
 #aliases to make life easier
 alias wodim='wodim -v'
 alias mem="ps -eo rss,pid,args | awk '{ \$1 = int(\$1/1024); if(\$1 > 0){ printf \"%4d \", \$1; printf \"%-6d\", \$2; for (i=3; i<=NF; i++) printf \"%s \", \$i; printf \"\n\"; }}' | sort -n | cut -c -50"
-alias ll='ls -l'
 alias l='ls -1'
+alias ll='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
 
 # need to use system to do my networky stuff
 alias virsh='virsh --connect qemu:///system'

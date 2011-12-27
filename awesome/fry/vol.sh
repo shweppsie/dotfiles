@@ -1,18 +1,19 @@
 #!/bin/bash
 
-low_vol=0
-max_vol=100
+[[ $1 == down ]] && state="down"
+[[ $1 == up ]] && state="up"
+[[ $2 ]] && increment=$2 || increment=1
 
-[[ $1 == down ]] && _status="down"
-[[ $1 == up ]] && _status="up"
+# get the primary output sound device
+sink_id=`pactl list | grep -A 2 'Sink #1' | grep 'Name: ' | sed 's/.*Name: \(.*\)$/\1/g'`
 
-if [[ "$_status" == "down" ]]; then
-	amixer sset PCM 1dB- > /dev/null
-elif [[ "$_status" == "up" ]]; then
-	amixer sset PCM 1dB+ > /dev/null
+# increase or decrese the volume
+if [[ "$state" == "down" ]]; then
+	pactl set-sink-volume $sink_id -- -${increment}% > /dev/null
+elif [[ "$state" == "up" ]]; then
+	pactl set-sink-volume $sink_id -- +${increment}% > /dev/null
 fi
 
-vol=`amixer sget PCM | grep -oE '[0-9]*%' | tail -n 1`
-
-echo "$vol"
+# Print the current volume
+echo `pactl list | grep -B 2 -A 10 "Name: ${sink_id}\$" | grep "[^ ]Volume:" | grep -o '[0-9]*%' | head -n 1`
 

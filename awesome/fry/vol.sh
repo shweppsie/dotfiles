@@ -5,7 +5,7 @@
 [[ $2 ]] && increment=$2 || increment=1
 
 # get the primary output sound device
-sink_id=`pactl list | grep -A 2 'Sink #1' | grep 'Name: ' | sed 's/.*Name: \(.*\)$/\1/g'`
+sink_id=`pactl list | grep -A 2 'Sink #0' | grep 'Name: ' | sed 's/.*Name: \(.*\)$/\1/g'`
 
 # increase or decrese the volume
 if [[ "$state" == "down" ]]; then

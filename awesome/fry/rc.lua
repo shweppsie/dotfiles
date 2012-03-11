@@ -103,6 +103,29 @@ for s = 1, screen.count() do
 end
 -- }}}
 
+-- {{{ Menu
+-- Create a laucher widget and a main menu
+awesome_menu = {
+    { "Reload", awesome.restart },
+    { "Quit", awesome.quit },
+}
+
+power_menu = {
+    { "Restart", function() os.execute('sudo /sbin/reboot') end },
+    { "Shutdown", function() os.execute('sudo /sbin/poweroff') end },
+}
+
+mymainmenu = awful.menu({ items = { 
+                                    { "Suspend", function() os.execute('sudo /usr/sbin/pm-suspend') end },
+                                    { "Power", power_menu },
+                                    { "Awesome", awesome_menu },
+                                  }
+                        })
+
+mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
+                                     menu = mymainmenu })
+-- }}}
+
 -- {{{ Wibox
 -- Create a textclock widget
 mytextclock = awful.widget.textclock({ align = "right" }, " %a %d %b %Y, %H:%M:%S ", 1)
@@ -195,6 +218,8 @@ end
 
 -- {{{ Mouse bindings
 root.buttons(awful.util.table.join(
+    awful.button({ }, 1, function () mymainmenu:hide() end),
+    awful.button({ }, 3, function () mymainmenu:toggle() end),
     awful.button({ }, 4, awful.tag.viewnext),
     awful.button({ }, 5, awful.tag.viewprev)
 ))

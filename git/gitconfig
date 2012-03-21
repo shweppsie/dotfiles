@@ -8,3 +8,5 @@
 	email = git@shweppsie.com
 [merge]
 	tool = vimdiff
+[alias]
+	unstage = reset HEAD

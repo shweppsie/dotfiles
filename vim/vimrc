@@ -27,6 +27,12 @@ set showmatch		" show matching brackets.
 set ignorecase		" do case insensitive matching
 set smartcase		" do smart case matching
 
+" relative line numbers
+try
+	set relativenumber
+catch
+endtry
+
 " persistent undo
 try
 	set undodir=~/.vim/undodir

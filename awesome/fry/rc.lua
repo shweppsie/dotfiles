@@ -374,12 +374,13 @@ awful.rules.rules = {
                      focus = true,
                      keys = clientkeys,
                      buttons = clientbuttons } },
+    --{ rule { class = "xbmc.bin" }, callback = function(c) awful.titlebar.remove(c) end }
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { tag = tags[1][2] } },
     -- { rule = { class = "chromium" }, properties = { tag = tags[1][1] } },
-    -- { rule = { class = "xchat" }, properties = { tag = tags[1][2] } },
-    -- { rule = { class = "gmpc" }, properties = { tag = tags[1][3] } },
+    --{ rule = { class = "xchat" }, tag = tags[1][1] },
+    --{ rule = { class = "gmpc" }, tag = tags[2][2]},
 
     -- { rule = { class = "MPlayer" }, properties = { floating = true } },
     -- { rule = { class = "pinentry" }, properties = { floating = true } },

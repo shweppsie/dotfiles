@@ -26,6 +26,7 @@ set showmode		" show when mode changes
 set showmatch		" show matching brackets.
 set ignorecase		" do case insensitive matching
 set smartcase		" do smart case matching
+set autoread		" auto read when a file is changed from the outside
 set number		" normal line numbers
 
 " relative line numbers

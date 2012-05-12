@@ -395,6 +395,9 @@ client.add_signal("manage", function (c, startup)
     -- Add a titlebar
     awful.titlebar.add(c, { modkey = modkey })
 
+    -- Remove gaps between windows
+    c.size_hints_honor = false;
+
     -- Enable sloppy focus
     c:add_signal("mouse::enter", function(c)
         if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier

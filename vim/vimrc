@@ -68,14 +68,26 @@ function! ShowBreak()
 	endif
 endfunction
 
+" map F4 to toggle highlighting on/off
+map <F4> :set hlsearch! hlsearch?<CR>
 
-" F4 to toggle highlighting on/off
-noremap <F4> :set hlsearch! hlsearch?<CR>
 " map F5 to toggle line wrapping
 map <F5> :set nowrap! nowrap?<CR>
 
-" F12 to avoid fucked up pasting
-nnoremap <F12> :set invpaste paste?<CR>
+" map F6 to toggle line wrapping indicator
+map <F6> :call ShowBreak()<CR>
+
+" map F7 to toggle sequential line numbers
+map <F7> :set number! number?<CR>
+
+" map F8 to toggle relative line numbers
+map <F8> :set relativenumber! relativenumber?<CR>
+
+" map F11 to retab file
+map <F9> :retab!<CR>
+
+" map F12 to avoid fucked up pasting
+map <F12> :set invpaste paste?<CR>
 set pastetoggle=<F12>
 
 " jump to the last position when reopening a file
@@ -87,6 +99,3 @@ endif
 if has("autocmd")
   filetype plugin indent on
 endif
-
-" maps :W to write file as the root user using sudo
-"cmap W w !sudo tee % >/dev/null<CR>:e!<CR><CR>

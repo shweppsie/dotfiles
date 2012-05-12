@@ -20,11 +20,12 @@ set background=dark
 set nowrap linebreak nolist
 set showbreak=...
 
+" various other options
 set incsearch		" search as each character is typed
 set showmode		" show when mode changes
-set showmatch		" Show matching brackets.
-set ignorecase		" Do case insensitive matching
-set smartcase		" Do smart case matching
+set showmatch		" show matching brackets.
+set ignorecase		" do case insensitive matching
+set smartcase		" do smart case matching
 
 " persistent undo
 "set undodir=~/.vim/undodir

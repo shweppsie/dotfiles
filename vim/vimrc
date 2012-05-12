@@ -26,6 +26,7 @@ set showmode		" show when mode changes
 set showmatch		" show matching brackets.
 set ignorecase		" do case insensitive matching
 set smartcase		" do smart case matching
+set number		" normal line numbers
 
 " relative line numbers
 try

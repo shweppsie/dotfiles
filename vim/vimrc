@@ -28,10 +28,13 @@ set ignorecase		" do case insensitive matching
 set smartcase		" do smart case matching
 
 " persistent undo
-"set undodir=~/.vim/undodir
-"set undofile
-"set undolevels=1000 "maximum number of changes that can be undone
-"set undoreload=10000 "maximum number lines to save for undo on a buffer reload
+try
+	set undodir=~/.vim/undodir
+	set undofile
+	set undolevels=1000 "maximum number of changes that can be undone
+	set undoreload=10000 "maximum number lines to save for undo on a buffer reload
+catch
+endtry
 
 " if a filetype has a special indentation plugin, load it
 filetype plugin indent on

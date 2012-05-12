@@ -43,21 +43,36 @@ filetype plugin indent on
 set title
 set titlestring=%t%(\ %M%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)\ -\ %{v:servername}
 
-" Press F6 to toggle linewrap indicator
+" linewrapping and indicator
 function! ShowBreak()
-	if &showbreak == ''
+	if &wrap == "nowrap"
+		" enable wrapping only
+		set wrap
+		set nolinebreak
+		set showbreak=
+	elseif &showbreak == ''
+		" also indicate indicate wrapped lines
+		set wrap
+		set nolinebreak
+		set showbreak=...
+	elseif &linebreak == "nolinebreak"
+		" also do wrapping at spaces
+		set wrap
+		set linebreak
 		set showbreak=...
 	else
+		" disable all wrapping options
+		set nowrap
+		set nolinebreak
 		set showbreak=
 	endif
 endfunction
-nmap <F6> :call ShowBreak()<CR> :set linebreak! showbreak?<CR>
 
-" Press F5 to toggle wrapping
-noremap <F5> :set nowrap! nowrap?<CR>
 
 " F4 to toggle highlighting on/off
 noremap <F4> :set hlsearch! hlsearch?<CR>
+" map F5 to toggle line wrapping
+map <F5> :set nowrap! nowrap?<CR>
 
 " F12 to avoid fucked up pasting
 nnoremap <F12> :set invpaste paste?<CR>

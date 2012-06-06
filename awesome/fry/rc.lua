@@ -396,7 +396,7 @@ client.add_signal("manage", function (c, startup)
     awful.titlebar.add(c, { modkey = modkey })
 
     -- Remove gaps between windows
-    c.size_hints_honor = false;
+    c.size_hints_honor = true;
 
     -- Enable sloppy focus
     c:add_signal("mouse::enter", function(c)

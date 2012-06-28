@@ -111,3 +111,8 @@ endif
 if has("autocmd")
   filetype plugin indent on
 endif
+
+" maps :W to write file as the root user using sudo
+"cmap W w !sudo tee % >/dev/null<CR>:e!<CR><CR>
+
+let g:atp_Compiler='bash'

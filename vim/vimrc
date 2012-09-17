@@ -77,6 +77,9 @@ function! ShowBreak()
 	endif
 endfunction
 
+" map F3 to toggle spellcheck
+map <F3> :setlocal spell! spelllang=en_us<CR>
+
 " map F4 to toggle highlighting on/off
 map <F4> :set hlsearch! hlsearch?<CR>
 

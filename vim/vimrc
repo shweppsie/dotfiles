@@ -118,4 +118,8 @@ endif
 " maps :W to write file as the root user using sudo
 "cmap W w !sudo tee % >/dev/null<CR>:e!<CR><CR>
 
+" highlight characters when there are more than 80 on a line
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%81v.\+/
+
 let g:atp_Compiler='bash'

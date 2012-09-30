@@ -118,8 +118,14 @@ endif
 " maps :W to write file as the root user using sudo
 "cmap W w !sudo tee % >/dev/null<CR>:e!<CR><CR>
 
-" highlight characters when there are more than 80 on a line
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
+" Highlight characters past column 80
+if version >= 703
+  set cc=80
+elseif version >= 702
+  :au BufWinEnter * let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
+  :au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+else
+  :match ErrorMsg '\%>80v.\+'
+endif
 
 let g:atp_Compiler='bash'

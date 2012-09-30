@@ -1,8 +1,27 @@
+" vim only settings
+set nocompatible
+
+" Always show the statusline
+set laststatus=2
+
+" Necessary to show Unicode glyphs
+set encoding=utf-8
+
 " detect the filetype
 filetype on
 
+" show the command being entered
+set showcmd
+
+" show cursorline
+set cursorline
+
 " if a file has a modeline, use it
 set modeline
+
+" Make cursor move as expected with wrapped lines
+inoremap <Down> <C-o>gj
+inoremap <Up> <C-o>gk
 
 " yes I like 8 space tabs, get over it
 set tabstop=8
@@ -128,4 +147,13 @@ else
   :match ErrorMsg '\%>80v.\+'
 endif
 
-let g:atp_Compiler='bash'
+" hightlight any extraneous whitespace
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$\| \+\ze\t/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$\| \+\ze\t/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$\| \+\ze\t/
+autocmd BufWinLeave * call clearmatches()
+
+" Don't return to last edit position for git commits
+au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])

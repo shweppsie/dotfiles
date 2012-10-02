@@ -147,7 +147,7 @@ else
   :match ErrorMsg '\%>80v.\+'
 endif
 
-" hightlight any extraneous whitespace
+" highlight any extraneous whitespace
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$\| \+\ze\t/
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$\| \+\ze\t/

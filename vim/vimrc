@@ -117,8 +117,8 @@ map <F8> :set relativenumber! relativenumber?<CR>
 " map F11 to retab file
 map <F9> :retab!<CR>
 
-" toggle 80 character line warnings
-map <F10> :call LimitLines()<CR>
+" turn various highlighting on and off
+map <F10> :call Highlighting()<CR>
 
 " map F12 to avoid fucked up pasting
 map <F12> :set invpaste paste?<CR>
@@ -141,43 +141,45 @@ if has("autocmd")
 endif
 
 " Highlight characters past column 80
-let g:linelimit = 'off'
-function! LimitLines()
-	if g:linelimit == 'off'
+let g:highlighting = 'off'
+function! Highlighting()
+	if g:highlighting == 'off'
 		if version >= 703
 			set cc=80
 		elseif version >= 702
-			augroup linelimit
-				autocmd BufWinEnter * let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
-				autocmd BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
-				call matchadd('Search', '\%<81v.\%>77v', -1)
-				call matchadd('ErrorMsg', '\%>80v.\+', -1)
+			" highlight any extraneous whitespace
+			highlight ExtraWhitespace ctermbg=red guibg=red
+			match ExtraWhitespace /\s\+$\| \+\ze\t/
+
+			let m1=matchadd('Search', '\%<81v.\%>77v', -1)
+			let m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+
+			augroup highlight
+				autocmd BufWinEnter * let m1=matchadd('Search', '\%<81v.\%>77v', -1)
+				autocmd BufWinEnter * let m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+				autocmd BufWinEnter * match ExtraWhitespace /\s\+$\| \+\ze\t/
+				autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+				autocmd InsertLeave * match ExtraWhitespace /\s\+$\| \+\ze\t/
+				autocmd BufWinLeave * call clearmatches()
 			augroup END
 		else
 			match ErrorMsg '\%>80v.\+'
 		endif
-		let g:linelimit = 'on'
+		let g:highlighting = 'on'
 	else
 		if version >= 703
 			set cc=
 		elseif version >= 702
-			autocmd! linelimit
+			"autocmd!
+			autocmd! highlight
 			call clearmatches()
 		else
 			match none
 		endif
-		let g:linelimit = 'off'
+		let g:highlighting = 'off'
 	endif
 endfunction
-call LimitLines()
-
-" highlight any extraneous whitespace
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$\| \+\ze\t/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$\| \+\ze\t/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$\| \+\ze\t/
-autocmd BufWinLeave * call clearmatches()
+call Highlighting()
 
 " Don't return to last edit position for git commits
 autocmd FileType gitcommit autocmd! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])

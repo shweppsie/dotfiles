@@ -121,6 +121,9 @@ map <F9> :retab!<CR>
 map <F12> :set invpaste paste?<CR>
 set pastetoggle=<F12>
 
+" map semicolon to colon
+map ; :
+
 " map :sw to write file using sudo
 cmap sw w !sudo tee % >/dev/null<CR>:e!<CR><CR>
 

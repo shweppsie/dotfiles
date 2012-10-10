@@ -98,6 +98,8 @@ endfunction
 
 " map F3 to toggle spellcheck
 map <F3> :setlocal spell! spelllang=en_us<CR>
+" map F2 to toggle auto inserting line returns at 80 chars
+map <F2> :call ToggleAutoWrap()<CR>
 
 " map F4 to toggle highlighting on/off
 map <F4> :set hlsearch! hlsearch?<CR>
@@ -180,6 +182,17 @@ function! Highlighting()
 	endif
 endfunction
 call Highlighting()
+
+let g:formatoptions = 'off'
+function! ToggleAutoWrap()
+    if g:formatoptions  == 'off'
+        set formatoptions+=a
+        let g:formatoptions = 'on'
+    else
+        set formatoptions-=a
+        let g:formatoptions = 'off'
+    endif
+endfunction
 
 " Don't return to last edit position for git commits
 autocmd FileType gitcommit autocmd! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])

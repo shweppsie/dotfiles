@@ -189,9 +189,11 @@ function! ToggleAutoWrap()
     if g:formatoptions  == 'off'
         set formatoptions+=a
         let g:formatoptions = 'on'
+	echo "autoformatting on"
     else
         set formatoptions-=a
         let g:formatoptions = 'off'
+	echo "autoformatting off"
     endif
 endfunction
 

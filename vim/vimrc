@@ -96,10 +96,11 @@ function! ShowBreak()
 	endif
 endfunction
 
-" map F3 to toggle spellcheck
-map <F3> :setlocal spell! spelllang=en_us<CR>
 " map F2 to toggle auto inserting line returns at 80 chars
 map <F2> :call ToggleAutoWrap()<CR>
+
+" map F3 to toggle sequential line numbers
+map <F3> :set number! number?<CR>
 
 " map F4 to toggle highlighting on/off
 map <F4> :set hlsearch! hlsearch?<CR>
@@ -110,8 +111,8 @@ map <F5> :set nowrap! nowrap?<CR>
 " map F6 to toggle line wrapping indicator
 map <F6> :call ShowBreak()<CR>
 
-" map F7 to toggle sequential line numbers
-map <F7> :set number! number?<CR>
+" map F7 to toggle spellcheck
+map <F7> :setlocal spell! spelllang=en_nz<CR>
 
 " map F8 to toggle relative line numbers
 map <F8> :set relativenumber! relativenumber?<CR>

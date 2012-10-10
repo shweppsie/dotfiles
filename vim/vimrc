@@ -120,7 +120,7 @@ map <F8> :set relativenumber! relativenumber?<CR>
 " map F11 to retab file
 map <F9> :retab!<CR>
 
-" turn various highlighting on and off
+" map F10 to toggle various highlighting on and off
 map <F10> :call Highlighting()<CR>
 
 " map F12 to avoid fucked up pasting

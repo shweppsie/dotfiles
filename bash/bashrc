@@ -56,6 +56,7 @@ alias l='ls -1'
 alias ll='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
+alias diff='diff -u'
 
 # need to use system to do my networky stuff
 alias virsh='virsh --connect qemu:///system'

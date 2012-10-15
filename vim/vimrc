@@ -201,6 +201,9 @@ endfunction
 au FileType tex,plaintex set formatoptions+=a | let g:formatoptions = 'on'
 au FileType tex,plaintex setlocal spell! spelllang=en_nz
 
+" don't add extra spaces after full stops
+set nojoinspaces
+
 " Don't return to last edit position for git commits
 autocmd FileType gitcommit autocmd! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
 

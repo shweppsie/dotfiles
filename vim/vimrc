@@ -130,6 +130,9 @@ set pastetoggle=<F12>
 " map semicolon to colon
 map ; :
 
+" map capital W to w
+cmap W w
+
 " map :sw to write file using sudo
 cmap sw w !sudo tee % >/dev/null<CR>:e!<CR><CR>
 

@@ -9,6 +9,11 @@ export HISTCONTROL=erasedups
 #path variable
 export PATH="$PATH:/sbin:/usr/sbin:/usr/local/bin:/usr/local/sbin"
 
+# package building vars
+export DEBFULLNAME='Nathan Overall'
+export DEBEMAIL='packages@shweppsie.com'
+export PBUILDFOLDER='/scratch/pbuilder/'
+
 # append to the history file, don't overwrite it
 shopt -s histappend
 

@@ -117,8 +117,8 @@ map <F7> :setlocal spell! spelllang=en_nz<CR>
 " map F8 to toggle relative line numbers
 map <F8> :set relativenumber! relativenumber?<CR>
 
-" map F11 to retab file
-map <F9> :retab!<CR>
+" map F11 to retab file and remove trailing space
+map <F9> :retab!<CR>:%s/\s\+$<CR>
 
 " map F10 to toggle various highlighting on and off
 map <F10> :call Highlighting()<CR>

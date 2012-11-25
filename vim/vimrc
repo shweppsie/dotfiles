@@ -202,6 +202,7 @@ endfunction
 " LaTeX stuff
 "au FileType tex,plaintex set formatoptions+=a | let g:formatoptions = 'on'
 au FileType tex,plaintex setlocal spell! spelllang=en_nz
+au FileType python call Highlighting()
 
 " don't add extra spaces after full stops
 set nojoinspaces

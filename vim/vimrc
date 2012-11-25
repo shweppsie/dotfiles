@@ -149,7 +149,18 @@ endif
 " Highlight characters past column 80
 let g:highlighting = 'off'
 function! Highlighting()
-	if g:highlighting == 'off'
+	if g:highlighting == 'on'
+		if version >= 703
+			set cc=
+		elseif version >= 702
+			"autocmd!
+			autocmd! highlight
+			call clearmatches()
+		else
+			match none
+		endif
+		let g:highlighting = 'off'
+	else
 		if version >= 703
 			set cc=80
 		elseif version >= 702
@@ -172,20 +183,8 @@ function! Highlighting()
 			match ErrorMsg '\%>80v.\+'
 		endif
 		let g:highlighting = 'on'
-	else
-		if version >= 703
-			set cc=
-		elseif version >= 702
-			"autocmd!
-			autocmd! highlight
-			call clearmatches()
-		else
-			match none
-		endif
-		let g:highlighting = 'off'
 	endif
 endfunction
-call Highlighting()
 
 let g:formatoptions = 'off'
 function! ToggleAutoWrap()

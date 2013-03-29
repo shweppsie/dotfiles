@@ -18,6 +18,7 @@ set cursorline
 
 " if a file has a modeline, use it
 set modeline
+set modelines=5
 
 " Make cursor move as expected with wrapped lines
 inoremap <Down> <C-o>gj

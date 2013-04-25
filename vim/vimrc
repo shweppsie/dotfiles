@@ -26,10 +26,10 @@ set modeline
 inoremap <Down> <C-o>gj
 inoremap <Up> <C-o>gk
 
-" yes I like 8 space tabs, get over it
-set tabstop=8
-set softtabstop=8
-set shiftwidth=8
+" 4 space tabs
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 set noexpandtab
 set smartindent
 

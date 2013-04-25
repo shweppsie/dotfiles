@@ -66,11 +66,6 @@ alias la='ls -a'
 alias lla='ls -la'
 alias diff='diff -u'
 
-# need to use system to do my networky stuff
-alias virsh='virsh --connect qemu:///system'
-alias virt-install='virt-install --connect qemu:///system'
-alias virt-viewer='virt-viewer --connect qemu:///system'
-
 # coloured diff from http://www.ex-parrot.com/pdw/cdiff.html
 diffnew=`tput setf 6``tput bold`   # colour for added lines (bright yellow)
 diffold=`tput setf 4``tput bold`   # colour for removed lines (bright red)

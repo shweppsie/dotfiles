@@ -80,3 +80,6 @@ $reset' \
 $reset' \
 	--unchanged-line-format='${diffsame}  %l${reset}
 ' "
+
+# change lxc path
+export lxc_path=/lxc

@@ -83,3 +83,6 @@ $reset' \
 
 # change lxc path
 export lxc_path=/lxc
+
+# makes keys expire
+alias ssh-add='ssh-add -t 43200'

@@ -108,3 +108,7 @@ export lxc_path=/lxc
 
 # makes keys expire
 alias ssh-add='ssh-add -t 43200'
+
+if [ -f "$HOME/.bash_local" ]; then
+    . "$HOME/.bashrc.local"
+fi

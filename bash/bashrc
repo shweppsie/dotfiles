@@ -110,5 +110,7 @@ export lxc_path=/lxc
 alias ssh-add='ssh-add -t 43200'
 
 if [ -f "$HOME/.bashrc.local" ]; then
+	echo -n "Loading local bashrc..."
     . "$HOME/.bashrc.local"
+	echo "done"
 fi

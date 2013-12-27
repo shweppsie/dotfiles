@@ -9,6 +9,11 @@ export HISTCONTROL=ignoredups:erasedups
 #path variable
 export PATH="$PATH:/sbin:/usr/sbin:/usr/local/bin:/usr/local/sbin"
 
+scripts="$HOME/src/scripts/bin"
+if [ -x ${scripts} ]; then
+	export PATH="$PATH:${scripts}"
+fi
+
 # package building vars
 export DEBFULLNAME='Nathan Overall'
 export DEBEMAIL='packages@shweppsie.com'

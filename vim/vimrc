@@ -10,6 +10,9 @@ set encoding=utf-8
 " detect the filetype
 filetype on
 
+" load pathogen for plugins
+execute pathogen#infect()
+
 " show the command being entered
 set showcmd
 
@@ -24,10 +27,10 @@ set modelines=5
 inoremap <Down> <C-o>gj
 inoremap <Up> <C-o>gk
 
-" yes I like 8 space tabs, get over it
-set tabstop=8
-set softtabstop=8
-set shiftwidth=8
+" 4 space tabs
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 set noexpandtab
 set smartindent
 
@@ -118,8 +121,8 @@ map <F7> :setlocal spell! spelllang=en_nz<CR>
 " map F8 to toggle relative line numbers
 map <F8> :set relativenumber! relativenumber?<CR>
 
-" map F11 to retab file
-map <F9> :retab!<CR>
+" map F11 to retab file and remove trailing space
+map <F9> :retab!<CR>:%s/\s\+$<CR>
 
 " map F10 to toggle various highlighting on and off
 map <F10> :call Highlighting()<CR>
@@ -150,7 +153,18 @@ endif
 " Highlight characters past column 80
 let g:highlighting = 'off'
 function! Highlighting()
-	if g:highlighting == 'off'
+	if g:highlighting == 'on'
+		if version >= 703
+			set cc=
+		elseif version >= 702
+			"autocmd!
+			autocmd! highlight
+			call clearmatches()
+		else
+			match none
+		endif
+		let g:highlighting = 'off'
+	else
 		if version >= 703
 			set cc=80
 		elseif version >= 702
@@ -173,20 +187,8 @@ function! Highlighting()
 			match ErrorMsg '\%>80v.\+'
 		endif
 		let g:highlighting = 'on'
-	else
-		if version >= 703
-			set cc=
-		elseif version >= 702
-			"autocmd!
-			autocmd! highlight
-			call clearmatches()
-		else
-			match none
-		endif
-		let g:highlighting = 'off'
 	endif
 endfunction
-call Highlighting()
 
 let g:formatoptions = 'off'
 function! ToggleAutoWrap()
@@ -204,6 +206,8 @@ endfunction
 " LaTeX stuff
 "au FileType tex,plaintex set formatoptions+=a | let g:formatoptions = 'on'
 au FileType tex,plaintex setlocal spell! spelllang=en_nz
+au FileType python call Highlighting()
+au FileType python set expandtab | set tabstop=4 | set softtabstop=4
 
 " don't add extra spaces after full stops
 set nojoinspaces

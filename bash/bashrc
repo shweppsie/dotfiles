@@ -4,10 +4,15 @@
 [ -z "$PS1" ] && return
 
 #ignore duplicate history entries
-export HISTCONTROL=erasedups
+export HISTCONTROL=ignoredups:erasedups
 
 #path variable
 export PATH="$PATH:/sbin:/usr/sbin:/usr/local/bin:/usr/local/sbin"
+
+scripts="$HOME/src/scripts/bin"
+if [ -x ${scripts} ]; then
+	export PATH="$PATH:${scripts}"
+fi
 
 # package building vars
 export DEBFULLNAME='Nathan Overall'
@@ -19,6 +24,9 @@ shopt -s histappend
 
 # size of history
 export HISTSIZE=10000;
+
+# save history after every command
+PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
 
 # check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -42,6 +50,28 @@ xterm*|rxvt*)
     ;;
 esac
 
+# colorize hostname and user
+if [ "$PS1" ]; then
+        if [ "$BASH" ]; then
+                shortname=${HOSTNAME%%.*}
+                shortname=${shortname//[aeiou]/}
+                hostname_crc=$(echo $HOSTNAME | tr 'A-Z' 'a-z' | cksum)
+                hostname_crc=${hostname_crc%% *}
+                hostcolor_a=$(( (0x${hostname_crc} + 1) % 2 ))
+                hostcolor_b=$(( 0x${hostname_crc} % 8 + 30 ))
+                PS1="\[\e[33;1m\]\u\[\e[0m\]@\[\e[${hostcolor_a};${hostcolor_b}m\]${HOSTNAME}:\[\e[01;34m\]\w\[\e[00m\]\$ "
+                PS2='\[\e[31;1m\]>\[\e[0m\]'
+
+                unset shortname hostname_crc hostcolor_a hostcolor_b
+        else
+                if [ "`id -u`" -eq 0 ]; then
+                        PS1='# '
+                else
+                        PS1='$ '
+                fi
+        fi
+fi
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     eval "`dircolors -b`"
@@ -63,11 +93,6 @@ alias la='ls -a'
 alias lla='ls -la'
 alias diff='diff -u'
 
-# need to use system to do my networky stuff
-alias virsh='virsh --connect qemu:///system'
-alias virt-install='virt-install --connect qemu:///system'
-alias virt-viewer='virt-viewer --connect qemu:///system'
-
 # coloured diff from http://www.ex-parrot.com/pdw/cdiff.html
 diffnew=`tput setf 6``tput bold`   # colour for added lines (bright yellow)
 diffold=`tput setf 4``tput bold`   # colour for removed lines (bright red)
@@ -82,3 +107,15 @@ $reset' \
 $reset' \
 	--unchanged-line-format='${diffsame}  %l${reset}
 ' "
+
+# change lxc path
+export lxc_path=/lxc
+
+# makes keys expire
+alias ssh-add='ssh-add -t 43200'
+
+if [ -f "$HOME/.bashrc.local" ]; then
+	echo -n "Loading local bashrc..."
+    . "$HOME/.bashrc.local"
+	echo "done"
+fi

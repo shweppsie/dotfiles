@@ -227,3 +227,6 @@ highlight clear SpellLocal
 highlight SpellLocal term=underline cterm=underline
 " ignore rare words
 highlight clear SpellRare
+
+" enable all python syntax highlighting
+let python_highlight_all = 1

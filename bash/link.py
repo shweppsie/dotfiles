@@ -18,6 +18,8 @@ filename = "vcprompt"
 dest = "~/.bin/vcprompt"
 
 dest = os.path.expanduser(dest)
+if not os.path.exists(os.path.dirname(dest)):
+    os.mkdir(os.path.dirname(dest))
 
 if os.path.exists(dest) or os.path.islink(dest):
 	os.unlink(dest)

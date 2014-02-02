@@ -69,7 +69,15 @@ if [ "$PS1" ]; then
 		if [ `id -u --name` != "nathan" ]; then
 			PS1="$PS1\[\e[49;31m\]\u\[\e[0m\]@";
 		fi
-        PS1="$PS1\[\e[38;5;${hostcolor}m\]${HOSTNAME}:\[\e[01;34m\]\w\[\e[00m\]\$ "
+
+		vcprompt="/home/nathan/.bin/vcprompt"
+		vcpromptargs="--format '%s:%b%m%a%u'"
+		if [ -x "$vcprompt" ]; then
+			vcprompt="$vcprompt $vcpromptargs"
+			PS1="$PS1\[\e[38;5;${hostcolor}m\]${HOSTNAME}:\[\e[01;34m\]\w\[\e[00m\]:\[\e[38;5;1m\]\$($vcprompt)\[\e[00m\]\$ "
+		else
+			PS1="$PS1\[\e[38;5;${hostcolor}m\]${HOSTNAME}:\[\e[01;34m\]\w\[\e[00m\]\$ "
+		fi
         PS2='\[\e[31;1m\]>\[\e[0m\]'
 
         unset shortname hostname_crc hostcolor_a hostcolor_b

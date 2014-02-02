@@ -70,7 +70,7 @@ if [ "$PS1" ]; then
 			PS1="$PS1\[\e[49;31m\]\u\[\e[0m\]@";
 		fi
 
-		vcprompt="/home/nathan/.bin/vcprompt"
+		vcprompt="$HOME/.bin/vcprompt"
 		vcpromptargs="--format '%s:%b%m%a%u'"
 		if [ -x "$vcprompt" ]; then
 			vcprompt="$vcprompt $vcpromptargs"

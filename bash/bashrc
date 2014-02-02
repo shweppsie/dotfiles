@@ -11,11 +11,13 @@ export PATH="$PATH:/sbin:/usr/sbin:/usr/local/bin:/usr/local/sbin"
 
 local_bin="$HOME/.bin"
 if [ -x ${local_bin} ]; then
+	echo "Loaded local binary folder (~/.bin)"
 	export PATH="$PATH:${local_bin}"
 fi
 
 scripts="$HOME/src/scripts/bin"
 if [ -x ${scripts} ]; then
+	echo "Loaded scripts from git repo (~/src/scripts/bin)"
 	export PATH="$PATH:${scripts}"
 fi
 

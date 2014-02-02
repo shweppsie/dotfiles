@@ -60,6 +60,10 @@ esac
 # colorize hostname and user
 if [ "$PS1" ]; then
     if [ "$BASH" ]; then
+		if [[ "$OSTYPE" == darwin* ]]; then
+			HOSTNAME=${HOSTNAME%%.*}
+		fi
+
         shortname=${HOSTNAME%%.*}
         hostname_crc=$(echo $HOSTNAME | tr 'A-Z' 'a-z' | cksum)
         hostname_crc=${hostname_crc%% *}

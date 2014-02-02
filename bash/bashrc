@@ -7,7 +7,7 @@
 export HISTCONTROL=ignoredups:erasedups
 
 #path variable
-export PATH="$PATH:/sbin:/usr/sbin:/usr/local/bin:/usr/local/sbin"
+export PATH="/usr/local/bin:/usr/local/sbin:/sbin:/usr/sbin:$PATH"
 
 local_bin="$HOME/.bin"
 if [ -x ${local_bin} ]; then

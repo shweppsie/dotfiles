@@ -57,24 +57,28 @@ esac
 
 # colorize hostname and user
 if [ "$PS1" ]; then
-        if [ "$BASH" ]; then
-                shortname=${HOSTNAME%%.*}
-                shortname=${shortname//[aeiou]/}
-                hostname_crc=$(echo $HOSTNAME | tr 'A-Z' 'a-z' | cksum)
-                hostname_crc=${hostname_crc%% *}
-                hostcolor_a=$(( (0x${hostname_crc} + 1) % 2 ))
-                hostcolor_b=$(( 0x${hostname_crc} % 8 + 30 ))
-                PS1="\[\e[33;1m\]\u\[\e[0m\]@\[\e[${hostcolor_a};${hostcolor_b}m\]${HOSTNAME}:\[\e[01;34m\]\w\[\e[00m\]\$ "
-                PS2='\[\e[31;1m\]>\[\e[0m\]'
+    if [ "$BASH" ]; then
+        shortname=${HOSTNAME%%.*}
+        hostname_crc=$(echo $HOSTNAME | tr 'A-Z' 'a-z' | cksum)
+        hostname_crc=${hostname_crc%% *}
+        hostcolor=$(( 0x${hostname_crc} % 256 ))
 
-                unset shortname hostname_crc hostcolor_a hostcolor_b
+		PS1=""
+		if [ `id -u --name` != "nathan" ]; then
+			PS1="$PS1\[\e[49;31m\]\u\[\e[0m\]@";
+		fi
+		echo "hostcolor: $hostcolor"
+        PS1="$PS1\[\e[38;5;${hostcolor}m\]${HOSTNAME}:\[\e[01;34m\]\w\[\e[00m\]\$ "
+        PS2='\[\e[31;1m\]>\[\e[0m\]'
+
+        unset shortname hostname_crc hostcolor_a hostcolor_b
+    else
+        if [ "`id -u`" -eq 0 ]; then
+            PS1='# '
         else
-                if [ "`id -u`" -eq 0 ]; then
-                        PS1='# '
-                else
-                        PS1='$ '
-                fi
+			PS1='$ '
         fi
+    fi
 fi
 
 # enable color support of ls and also add handy aliases

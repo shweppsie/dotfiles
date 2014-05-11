@@ -74,12 +74,7 @@ if [ "$PS1" ]; then
 			PS1="$PS1\[\e[49;31m\]\u\[\e[0m\]@";
 		fi
 
-		ssh-add > /dev/null
-		if [ $? -ne 2 ]; then
-			ssh_keys='[`ssh-add -l | wc -l`]'
-		fi
-
-		PS1="$PS1\[\e[38;5;35m\]${ssh_keys}\[\e[38;5;${hostcolor}m\]${HOSTNAME}:\[\e[01;34m\]\w\[\e[00m\]"
+		PS1="$PS1\[\e[38;5;${hostcolor}m\]${HOSTNAME}:\[\e[01;34m\]\w\[\e[00m\]"
 
 		vcprompt="$HOME/.bin/vcprompt"
 		vcpromptargs="--format '%s:%b%m%a%u'"

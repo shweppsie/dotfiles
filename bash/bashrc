@@ -107,7 +107,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-#aliases to make life easier
+# aliases to make life easier
 alias wodim='wodim -v'
 alias mem="ps -eo rss,pid,args | awk '{ \$1 = int(\$1/1024); if(\$1 > 0){ printf \"%4d \", \$1; printf \"%-6d\", \$2; for (i=3; i<=NF; i++) printf \"%s \", \$i; printf \"\n\"; }}' | sort -n | cut -c -50"
 alias l='ls -1'
@@ -115,6 +115,12 @@ alias ll='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
 alias diff='diff -u'
+alias mv='mv -i'
+
+alias gi='git commit --interactive'
+
+# disable colour on ipcalc
+alias ipcalc='ipcalc -n'
 
 # change lxc path
 export lxc_path=/lxc

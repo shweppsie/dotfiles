@@ -70,7 +70,7 @@ if [ "$PS1" ]; then
         hostcolor=$(( 0x${hostname_crc} % 256 ))
 
 		PS1=""
-		if [ "$USER" != "nathan" ]; then
+		if [ "$USER" != "nathan" -a "$USER" != "Nathan" ]; then
 			PS1="$PS1\[\e[49;31m\]\u\[\e[0m\]@";
 		fi
 

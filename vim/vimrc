@@ -32,7 +32,6 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set noexpandtab
-set smartindent
 
 " syntax highlighting is a beautiful thing
 syntax on
@@ -67,9 +66,6 @@ try
 	set undoreload=10000 "maximum number lines to save for undo on a buffer reload
 catch
 endtry
-
-" if a filetype has a special indentation plugin, load it
-filetype plugin indent on
 
 " give a useful title
 set title

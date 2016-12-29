@@ -202,8 +202,12 @@ endfunction
 " LaTeX stuff
 "au FileType tex,plaintex set formatoptions+=a | let g:formatoptions = 'on'
 au FileType tex,plaintex setlocal spell! spelllang=en_nz
+
+" Python specific stuff
 au FileType python call Highlighting()
 au FileType python set expandtab | set tabstop=4 | set softtabstop=4
+" enable all python syntax highlighting
+let python_highlight_all = 1
 
 " don't add extra spaces after full stops
 set nojoinspaces
@@ -223,6 +227,3 @@ highlight clear SpellLocal
 highlight SpellLocal term=underline cterm=underline
 " ignore rare words
 highlight clear SpellRare
-
-" enable all python syntax highlighting
-let python_highlight_all = 1

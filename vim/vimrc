@@ -215,12 +215,3 @@ autocmd FileType gitcommit autocmd! BufEnter COMMIT_EDITMSG call setpos('.', [0,
 " Explicitly tell Vim that the terminal supports 256 colors
 set t_Co=256
 
-" use underline instead of red text for spelling
-highlight clear SpellBad
-highlight SpellBad term=standout ctermfg=1 term=underline cterm=underline
-highlight clear SpellCap
-highlight SpellCap term=underline cterm=underline
-highlight clear SpellLocal
-highlight SpellLocal term=underline cterm=underline
-" ignore rare words
-highlight clear SpellRare

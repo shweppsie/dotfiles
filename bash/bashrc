@@ -128,6 +128,15 @@ export lxc_path=/lxc
 # makes keys expire
 alias ssh-add='ssh-add -t 43200'
 
+# if ssh-agent isn't available create one
+if [ ! -S ~/.ssh/ssh_auth_sock ]; then
+  echo -n "Starting ssh-agent..."
+  eval `ssh-agent`
+  ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+  echo "done"
+fi
+export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+
 if [ -f "$HOME/.bashrc.local" ]; then
 	echo -n "Loading local bashrc..."
     . "$HOME/.bashrc.local"

@@ -127,6 +127,8 @@ export lxc_path=/lxc
 
 # makes keys expire
 alias ssh-add='ssh-add -t 43200'
+# only load my old key for 5 minutes so I fix this
+alias ssh-add-old='ssh-add -t 300 ~/.ssh/dsa'
 
 if [ -f "$HOME/.bashrc.local" ]; then
 	echo -n "Loading local bashrc..."

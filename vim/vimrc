@@ -9,6 +9,8 @@ set encoding=utf-8
 
 " detect the filetype
 filetype on
+filetype plugin on
+filetype plugin indent on
 
 " load pathogen for plugins
 execute pathogen#infect()
@@ -32,7 +34,6 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set noexpandtab
-set smartindent
 
 " syntax highlighting is a beautiful thing
 syntax on
@@ -67,9 +68,6 @@ try
 	set undoreload=10000 "maximum number lines to save for undo on a buffer reload
 catch
 endtry
-
-" if a filetype has a special indentation plugin, load it
-filetype plugin indent on
 
 " give a useful title
 set title
@@ -145,11 +143,6 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
-" load indentation rules and plugins according to the detected filetype.
-if has("autocmd")
-  filetype plugin indent on
-endif
-
 " Highlight characters past column 80
 let g:highlighting = 'off'
 function! Highlighting()
@@ -206,8 +199,12 @@ endfunction
 " LaTeX stuff
 "au FileType tex,plaintex set formatoptions+=a | let g:formatoptions = 'on'
 au FileType tex,plaintex setlocal spell! spelllang=en_nz
+
+" Python specific stuff
 au FileType python call Highlighting()
 au FileType python set expandtab | set tabstop=4 | set softtabstop=4
+" enable all python syntax highlighting
+let python_highlight_all = 1
 
 " don't add extra spaces after full stops
 set nojoinspaces
@@ -218,15 +215,3 @@ autocmd FileType gitcommit autocmd! BufEnter COMMIT_EDITMSG call setpos('.', [0,
 " Explicitly tell Vim that the terminal supports 256 colors
 set t_Co=256
 
-" use underline instead of red text for spelling
-highlight clear SpellBad
-highlight SpellBad term=standout ctermfg=1 term=underline cterm=underline
-highlight clear SpellCap
-highlight SpellCap term=underline cterm=underline
-highlight clear SpellLocal
-highlight SpellLocal term=underline cterm=underline
-" ignore rare words
-highlight clear SpellRare
-
-" enable all python syntax highlighting
-let python_highlight_all = 1

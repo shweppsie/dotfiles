@@ -130,6 +130,15 @@ alias ssh-add='ssh-add -t 43200'
 # only load my old key for 5 minutes so I fix this
 alias ssh-add-old='ssh-add -t 300 ~/.ssh/dsa'
 
+# if ssh-agent isn't available create one
+if [ ! -S ~/.ssh/ssh_auth_sock ]; then
+  echo -n "Starting ssh-agent..."
+  eval `ssh-agent`
+  ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+  echo "done"
+fi
+export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+
 if [ -f "$HOME/.bashrc.local" ]; then
 	echo -n "Loading local bashrc..."
     . "$HOME/.bashrc.local"

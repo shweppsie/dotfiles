@@ -11,4 +11,4 @@
 [alias]
 	unstage = reset HEAD
 [push]
-	default = simple
+	default = matching

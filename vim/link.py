@@ -2,29 +2,22 @@
 
 import os,sys, shutil
 
-filename = "vimrc"
-dest = "~/.vimrc"
+for src in ["vimrc", "vim"]:
+	dst = "~/.%s" % src
 
-dest = os.path.expanduser(dest)
+	# get current dir
+	workingdir = os.path.abspath(os.path.dirname(sys.argv[0]))
 
-if os.path.exists(dest) or os.path.islink(dest):
-	os.unlink(dest)
+	# expand paths
+	dst = os.path.expanduser(dst)
+	src = os.path.join(workingdir,src)
 
-workingdir = os.path.abspath(os.path.dirname(sys.argv[0]))
+	# get relative path
+	src = os.path.relpath(src,dst)
 
-os.symlink(os.path.join(workingdir,filename),dest)
+	# unlink old files
+	if os.path.exists(dst) or os.path.islink(dst):
+		os.unlink(dst)
 
-filename = "vim"
-dest = "~/.vim"
-
-dest = os.path.expanduser(dest)
-
-if os.path.islink(dest):
-    os.unlink(dest)
-elif os.path.exists(dest):
-    shutil.rmtree(dest)
-
-workingdir = os.path.abspath(os.path.dirname(sys.argv[0]))
-
-os.symlink(os.path.join(workingdir,filename),dest)
-
+	print('Symlinking "%s" to "%s"' % (dst,src))
+	os.symlink(src,dst)

@@ -1,9 +1,17 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import os,sys, shutil
 
-for src in ["vimrc", "vim"]:
-    dst = "~/.%s" % src
+files = [
+    "vim/vimrc",
+    "vim/vim",
+    "git/gitconfig",
+    "bash/bashrc",
+    "bash/bin",
+]
+
+for src in files:
+    dst = "~/.%s" % os.path.basename(src)
 
     # get current dir
     workingdir = os.path.abspath(os.path.dirname(sys.argv[0]))
@@ -12,8 +20,13 @@ for src in ["vimrc", "vim"]:
     dst = os.path.expanduser(dst)
     src = os.path.join(workingdir,src)
 
+    dst_dir = os.path.dirname(dst)
+
     # get relative path
-    src = os.path.relpath(src,os.path.dirname(dst))
+    src = os.path.relpath(src,dst_dir)
+
+    if not os.path.exists(dst_dir):
+        os.makedirs(dst_dir)
 
     # unlink old files
     if os.path.exists(dst) or os.path.islink(dst):

@@ -133,11 +133,13 @@ alias ssh-add-old='ssh-add -t 300 ~/.ssh/dsa'
 # check this isn't an ssh session
 if [ -z "${SSH_CLIENT+x}" ] && [ -z "${SSH_TTY+x}" ]
 then
-	# make sure we have an ssh-agent
-	if [ -z "${SSH_AGENT_PID}" ]
-	then
-		echo "Starting SSH Agent"
-		eval $(ssh-agent -s) &> /dev/null
+	# not an ssh session
+	export SSH_AUTH_SOCK=~/.ssh/ssh-agent.$HOSTNAME.sock
+	ssh-add -l 2>/dev/null >/dev/null
+	if [ $? -ge 2 ]; then
+		rm "$SSH_AUTH_SOCK"
+	    echo "Starting SSH Agent"
+		ssh-agent -a "$SSH_AUTH_SOCK" >/dev/null
 	fi
 fi
 

@@ -141,6 +141,8 @@ then
 	fi
 fi
 
+umask 022
+
 if [ -f "$HOME/.bashrc.local" ]; then
 	echo -n "Loading local bashrc..."
     . "$HOME/.bashrc.local"

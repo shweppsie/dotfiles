@@ -137,7 +137,7 @@ then
 	export SSH_AUTH_SOCK=~/.ssh/ssh-agent.$HOSTNAME.sock
 	ssh-add -l 2>/dev/null >/dev/null
 	if [ $? -ge 2 ]; then
-		rm "$SSH_AUTH_SOCK"
+		rm -f "$SSH_AUTH_SOCK"
 	    echo "Starting SSH Agent"
 		ssh-agent -a "$SSH_AUTH_SOCK" >/dev/null
 	fi

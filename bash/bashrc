@@ -130,7 +130,7 @@ alias ssh-add='ssh-add -t 43200'
 # only load my old key for 5 minutes so I fix this
 alias ssh-add-old='ssh-add -t 300 ~/.ssh/dsa'
 
-# check this isn't an ssh session
+# create ssh agent if it's not running and this is a local shell
 if [ -z "${SSH_CLIENT+x}" ] && [ -z "${SSH_TTY+x}" ]
 then
 	# not an ssh session
@@ -143,8 +143,10 @@ then
 	fi
 fi
 
+# set default umask
 umask 022
 
+# load local bashrc overrides if it exists
 if [ -f "$HOME/.bashrc.local" ]; then
 	echo -n "Loading local bashrc..."
     . "$HOME/.bashrc.local"

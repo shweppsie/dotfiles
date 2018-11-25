@@ -5,7 +5,7 @@
 
 [user]
 	name = Nathan Overall
-	email = git@shweppsie.com
+	email = nathan.overall@lightwire.co.nz
 [merge]
 	tool = vimdiff
 [alias]

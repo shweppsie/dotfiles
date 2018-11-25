@@ -26,6 +26,10 @@ export DEBFULLNAME='Nathan Overall'
 export DEBEMAIL='packages@shweppsie.com'
 export PBUILDFOLDER='/scratch/pbuilder/'
 
+# set GOPATH
+export GOPATH="$HOME/go/"
+mkdir -p "$GOPATH"
+
 # append to the history file, don't overwrite it
 shopt -s histappend
 

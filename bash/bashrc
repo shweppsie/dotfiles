@@ -120,6 +120,7 @@ alias la='ls -a'
 alias lla='ls -la'
 alias diff='diff -u'
 alias mv='mv -i'
+alias cssh='i2cssh'
 
 alias gi='git commit --interactive'
 

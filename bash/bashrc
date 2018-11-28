@@ -83,9 +83,14 @@ if [ "$PS1" ]; then
 		vcprompt="$HOME/.bin/vcprompt"
 		vcpromptargs="--format '%s:%b%m%a%u'"
 
-		if [ -x "$vcprompt" -a -x /usr/bin/python ]; then
-			vcprompt="$vcprompt $vcpromptargs"
-			PS1="$PS1:\[\e[38;5;1m\]\$($vcprompt)"
+		if [ -x "$vcprompt" ]; then
+			if [ -x /usr/bin/python ]; then
+				vcprompt="/usr/bin/python $vcprompt"
+				PS1="$PS1:\[\e[38;5;1m\]\$($vcprompt)"
+			elif [ -x /usr/bin/python3 ]; then
+				vcprompt="/usr/bin/python3 $vcprompt"
+				PS1="$PS1:\[\e[38;5;1m\]\$($vcprompt)"
+			fi
 		fi
 		PS1="$PS1:\[\e[00m\]\$ "
         PS2='\[\e[31;1m\]continue->\[\e[0m\]'

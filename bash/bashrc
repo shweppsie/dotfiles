@@ -83,10 +83,11 @@ if [ "$PS1" ]; then
 		vcprompt="$HOME/.bin/vcprompt"
 		vcpromptargs="--format '%s:%b%m%a%u'"
 
-		if [ -x "$vcprompt" ]; then
+		if [ -x "$vcprompt" -a -x /usr/bin/python ]; then
 			vcprompt="$vcprompt $vcpromptargs"
-			PS1="$PS1:\[\e[38;5;1m\]\$($vcprompt)\[\e[00m\]\$ "
+			PS1="$PS1:\[\e[38;5;1m\]\$($vcprompt)"
 		fi
+		PS1="$PS1:\[\e[00m\]\$ "
         PS2='\[\e[31;1m\]continue->\[\e[0m\]'
 
         unset shortname hostname_crc hostcolor_a hostcolor_b

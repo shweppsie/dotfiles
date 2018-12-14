@@ -30,7 +30,10 @@ for src in files:
 
     # unlink old files
     if os.path.exists(dst) or os.path.islink(dst):
-        os.unlink(dst)
+        if os.path.isdir(dst):
+            shutil.rmtree(dst)
+        else:
+            os.unlink(dst)
 
     print('Symlinking "%s" to "%s"' % (dst,src))
     os.symlink(src,dst)

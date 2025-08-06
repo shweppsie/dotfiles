@@ -206,6 +206,9 @@ au FileType python set expandtab | set tabstop=4 | set softtabstop=4
 " enable all python syntax highlighting
 let python_highlight_all = 1
 
+" Fix comment indentation in yaml
+autocmd FileType yaml,yaml.ansible setlocal indentkeys-=0#
+
 " don't add extra spaces after full stops
 set nojoinspaces
 
